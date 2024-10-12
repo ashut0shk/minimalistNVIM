@@ -17,6 +17,7 @@ return {
   -- load when entering nvim
   keys = {
     { '<leader>e', ':NvimTreeToggle<CR>'},
+    { '<leader>1', '<C-w>w' },
   },
 
   config = function()
@@ -32,7 +33,7 @@ return {
 
       update_focused_file = {
         enable = true,
-        update_cwd = false,
+        update_cwd = false,  --make it true to go into selected file's dir only
       },
 
       renderer = {
@@ -114,6 +115,17 @@ return {
 
     -- keymap to open the project tree
     vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
+    vim.keymap.set('n', '<leader>`', ':NvimTreeFocus<CR>')
+    -- vim.keymap.set('n', '<leader>1', '<C-w>w')
+
+    -- open nvimtree
+    -- vim.api.nvim_create_autocmd("BufEnter", {
+    --   callback = function()
+    --     if vim.fn.isdirectory(vim.fn.expand('%:p:h')) == 1 then
+    --       vim.cmd("NvimTreeOpen")
+    --     end
+    --   end
+    -- })
 
   end,
 }

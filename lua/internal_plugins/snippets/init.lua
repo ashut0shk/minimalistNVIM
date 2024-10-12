@@ -17,6 +17,8 @@ local snippets_by_filetype = {
 
   lua = require('internal_plugins/snippets/lua'),
   python = require('internal_plugins/snippets/python'),
+  typescript = require('internal_plugins/snippets/typescript'),
+  javascript = require('internal_plugins/snippets/javascript'),
 
 }
 

@@ -15,7 +15,7 @@ return {
   'hrsh7th/nvim-cmp',
 
   -- load for these files
-  ft = { 'python', 'rust', 'lua' },
+  ft = { 'python', 'rust', 'lua', 'typescript', 'javascript' },
 
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
@@ -98,7 +98,7 @@ return {
 
       },
 
-      completion = { completeopt = 'menu,menuone,noinsert' },
+      completion = { completeopt = 'menu,menuone,noselect,noinsert' },
 
       mapping = {
 
@@ -110,6 +110,8 @@ return {
           function(fallback)
             if vim.snippet.active({ direction = 1 }) then
               vim.snippet.jump(1)
+            elseif cmp.visible() then
+              cmp.select_next_item()
             else
               fallback()
             end
@@ -121,11 +123,22 @@ return {
           function(fallback)
             if vim.snippet.active({ direction = -1 }) then
               vim.snippet.jump(-1)
+            elseif cmp.visible() then
+              cmp.select_prev_item()
             else
               fallback()
             end
           end, { 'i', 's' }
         ),
+
+        -- Navigate suggestions with arrow keys or hjkl
+        ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        ['<Right>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        ['<Left>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+
 
         -- vim-motion-esque navigation in cmp items
         ['<C-S-j>'] = cmp.mapping(

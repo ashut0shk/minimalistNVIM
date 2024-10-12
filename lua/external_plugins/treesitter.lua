@@ -27,8 +27,8 @@ return {
     end
 
     treesitter.setup {
-      ensure_installed = { 'python' },
-      sync_install = true,
+      ensure_installed = { 'python', 'javascript', 'lua', 'html', 'css', 'bicep', 'yaml' },
+      sync_install = false,
       ignore_install = {},
       highlight = {
         enable = true,
@@ -40,6 +40,7 @@ return {
 
     vim.o.foldmethod = 'expr'
     vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+    vim.o.foldlevel = 99 -- Start unfolded
 
   end,
 

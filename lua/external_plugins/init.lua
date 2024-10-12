@@ -87,5 +87,8 @@ lazy.setup {
     { import = location .. 'autopairs' },
     { import = location .. 'todo-comments' },
     { import = location .. 'oil' },
+    -- { import = location .. 'bufferline' },
+    { import = location .. 'copilot' },
+    { import = location .. 'minimap' },
   },
 }

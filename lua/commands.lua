@@ -74,3 +74,37 @@ vim.api.nvim_create_user_command(
   end,
   { nargs = 1, range = true }
 )
+
+-- activate tree and minimap
+-- vim.api.nvim_create_autocmd(
+--   {'BufEnter'}, {
+--     group = visual_aid,
+--     callback = function()
+--       if vim.fn.isdirectory(vim.fn.expand('%:p:h')) == 1 then
+--         -- Use pcall to safely call the command
+--         local success = pcall(vim.cmd, 'NvimTreeToggle')
+--         if not success then
+--           vim.notify('Failed to toggle NvimTree: command not available')
+--         end
+
+--       end
+--     end,
+--   }
+-- )
+
+-- activate tree and minimap
+vim.api.nvim_create_autocmd(
+  {'BufEnter'}, {
+    group = visual_aid,
+    callback = function()
+      if vim.fn.isdirectory(vim.fn.expand('%:p:h')) == 1 then
+        -- toggle Minimap safely
+        local minimap_success = pcall(vim.cmd, 'MinimapToggle')
+        if not minimap_success then
+          vim.notify('Failed to toggle Minimap: command not available')
+        end
+
+      end
+    end,
+  }
+)

@@ -50,6 +50,18 @@ local mode_keymaps = {
 
     ['gb'] = { action = '<C-t>', desc = 'go back after jump, e.g., goto definition' },
 
+    ['<C-f>'] = { action = ':Telescope current_buffer_fuzzy_find<CR>', desc = 'Find in the current buffer using Telescope' },
+    ['<C-S-f>'] = { action = ':Telescope live_grep<CR>', desc = 'Find in files using Telescope' },
+    ['<C-p>'] = { action = ':Telescope find_files<CR>', desc = 'Find files' },
+
+    ['<C-b>'] = { action = ':NvimTreeToggle<CR>', desc = 'Toggle sidebar' },
+
+    ['<Tab>'] = { action = ':bnext<CR>', desc = 'Next file in buffer' },
+    ['<S-Tab>'] = { action = ':bprevious<CR>', desc = 'Previous file in buffer' },
+    ['<C-Tab>'] = { action = ':bnext<CR>', desc = 'Next file in buffer' },
+    ['<C-S-Tab>'] = { action = ':bprevious<CR>', desc = 'Previous file in buffer' },
+    ['<C-PageUp>'] = { action = ':bnext<CR>', desc = 'Next file in buffer' },
+    ['<C-PageDown>'] = { action = ':bprevious<CR>', desc = 'Previous file in buffer' },
   },
 
   
@@ -83,7 +95,7 @@ local mode_keymaps = {
 
   
   command = {
-
+    -- ['<Tab>'] = { action = 'copilot#Accept("<Tab>")', desc = 'Select the highlighted choice' },
     ['<C-y>'] = { action = '/g | nohlsearch<return>', desc = 'confirm substitution-like operations without any highlight remaining' },
     
   },
@@ -92,6 +104,12 @@ local mode_keymaps = {
   terminal = {
 
     ['qq'] = { action = '<C-\\><C-n>', desc = 'exit terminal mode without closing the terminal' },
+
+  },
+
+  insert = {
+
+    ['<Tab>'] = { action = 'copilot#Accept("<Tab>")', desc = 'Select the highlighted choice' },
 
   },
  

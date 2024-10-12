@@ -34,6 +34,7 @@ local function get_handlers()
     keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    keymap(bufnr, 'n', '<A-k>', '<C-o>', opts) -- Jump back
   end
 
   handlers.on_attach = function(client, bufnr)
@@ -68,7 +69,7 @@ return {
   'neovim/nvim-lspconfig',
 
   -- load when entering the buffer
-  ft = { 'python', 'rust' },
+  ft = { 'python', 'rust', 'javascript', 'typescript', 'bicep', 'yaml' },
   -- event = 'UIEnter',
 
   dependencies = {
@@ -118,7 +119,11 @@ return {
     vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'rounded'})
 
     local servers = {
-      'pyright',
+      'ts_ls',                    -- TypeScript and JavaScript
+      'pyright',                  -- Python Language Server
+      'yamlls',                   -- YAML Language Server (Correct name)
+      'bicep',                    -- Bicep Language Server
+      'rust_analyzer',
     }
 
     require('mason-lspconfig').setup({

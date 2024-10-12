@@ -42,9 +42,17 @@ local options = {
   -- options to configure how texts are shown in a window
 
   wrap = false,                 -- no text wrapping (ugly)
+  autoindent = true,            -- automatic indentation
   smartindent = true,           -- automatic indentation
   scrolloff = 99,               -- keeps cursor in the middle
   sidescrolloff = 6,            -- minimal number of screen columns to the left and right of the cursor
+  cursorline = true,
+
+  -- Highlighting and Spacing
+  smoothscroll = true,
+  list = false,
+  listchars = "trail:•,eol:↲,space:·,tab:> ,extends:.,precedes:.,nbsp:⎵",
+  pumblend = 10,
 
   -- options to configure how search works
 
@@ -74,6 +82,12 @@ local options = {
   swapfile = false,             -- do not creates a swapfile
   undofile = true,              -- enable persistent undo
   fileencoding = 'utf-8',       -- the encoding written to a file
+  autowrite = false,
+  updatetime = 100,
+
+  -- Miscellaneous
+  hidden = true,
+  history = 10000,
 
 }
 
