@@ -1,5 +1,5 @@
 ---
--- @file lua/internal_plugins/snippets/python.lua
+-- @file lua/snippets/python.lua
 --
 -- @brief
 -- The collection of snippets for python files

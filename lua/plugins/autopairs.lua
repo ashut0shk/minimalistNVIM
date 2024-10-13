@@ -1,5 +1,5 @@
 ---
--- @file lua/external_plugins/autopairs.lua
+-- @file lua/plugins/autopairs.lua
 --
 -- @brief
 -- The configuration file for the plugin autopairs
@@ -26,7 +26,6 @@ return {
     autopairs.setup {
 
       check_ts = true,
-      
       ts_config = {
         lua = {'string', 'source'},
       },

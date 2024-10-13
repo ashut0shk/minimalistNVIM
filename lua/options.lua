@@ -2,97 +2,68 @@
 -- @file lua/options.lua
 --
 -- @brief
--- The configuration file to set the general nvim behaviour
+-- The file to set general Neovim behaviours
 --
 -- @author Rezha Adrian Tanuharja
--- @date 2024-08-31
+-- @date 2024-10-12
 --
 
 
 local options = {
 
-  -- options to configure user interface
+  -- user interface
 
-  mouse = '',                   -- disable the mouse in neovim
-  clipboard = 'unnamedplus',    -- neovim uses the system clipboard by default
-  guifont = 'monospace:h16',    -- the font used in graphical neovim application
-  termguicolors = true,         -- use the proper color
-  cmdheight = 1,                -- only need to display one line for commands
-  pumheight = 10,               -- pop up menu height
-  showtabline = 0,              -- hide tabline
-  inccommand = 'split',         -- when substituting multiple texts, display a preview at the bottom
-  timeoutlen = 300,             -- time for user to finish a key combination
-  updatetime = 200,             -- faster completion
-  showmode = false,             -- mode will be shown by statusline instead
-  virtualedit = 'block',        -- enable highlighting empty spaces
-
-  -- options to configure the left column
-
-  relativenumber = true,        -- display relative line numbers
-  number = true,                -- display the current line number
-  numberwidth = 4,              -- set the width of number column
-  signcolumn = 'yes',           -- add a column next to line number for signs
-
-  -- options to configure how tab behaves
-
-  expandtab = true,             -- convert tabs into spaces
-  shiftwidth = 2,               -- the number of spaces for each indentation
-  tabstop = 2,                  -- the number of spaces for each tab
-
-  -- options to configure how texts are shown in a window
-
-  wrap = false,                 -- no text wrapping (ugly)
-  autoindent = true,            -- automatic indentation
-  smartindent = true,           -- automatic indentation
-  scrolloff = 99,               -- keeps cursor in the middle
-  sidescrolloff = 6,            -- minimal number of screen columns to the left and right of the cursor
+  mouse = '',                 -- disable mouse in neovim
+  clipboard = 'unnamedplus',  -- neovim uses the system clipboard by default
   cursorline = true,
+  showtabline = 0,            -- hide tabline
+  inccommand = 'split',       -- when performing substitution, show preview at the bottom
+  timeoutlen = 300,           -- time for user to finish a key combination
+  updatetime = 200,           -- faster completion
+  virtualedit = 'block',      -- enable highlighting empty spaces
+  splitbelow = true,          -- when splitting horizontally, new window goes below
+  splitright = true,          -- when splitting vertically, new window goes to the right
+  showmode = false,           -- mode will be shown by statusline
 
-  -- Highlighting and Spacing
-  smoothscroll = true,
-  list = false,
-  listchars = "trail:•,eol:↲,space:·,tab:> ,extends:.,precedes:.,nbsp:⎵",
-  pumblend = 10,
+  -- tabs and indentations
 
-  -- options to configure how search works
+  expandtab = true,           -- convert tabs into spaces
+  shiftwidth = 2,             -- the number of spaces for each indentation
+  tabstop = 2,                -- the number of spaces for each tab
 
-  hlsearch = true,              -- highlight all words that match the search pattern
-  ignorecase = true,            -- search is case-insensitive
-  smartcase = true,             -- but if our search contains uppercase(s), it become case-sensitive
+  -- number columns
 
-  -- options to configure how multiple panes behave
+  relativenumber = true,      -- display relative line numbers
+  number = true,              -- display the current line number
+  numberwidth = 4,            -- the column width to display line numbers
 
-  splitbelow = true,            -- for a vertical split, the new window goes to the bottom
-  splitright = true,            -- for a horizontal split, the new window goes to the right
+  -- text display
 
-  -- options to configure how text folding works
+  foldlevelstart = 99,        -- start with everything unfolded
+  foldtext = '',              -- keep the appearance of the first folded line
+
+  wrap = false,               -- do not wrap lines because it is ugly
+  smartindent = true,         -- automatic indentations
+  scrolloff = 99,             -- keep cursorline in the middle
+  sidescrolloff = 6,          -- minimul number of columns to the left and right of cursor
 
   fillchars = {
-    eob = ' ',                  -- removes tilde from number column in a short file
-    fold = '-',                 -- replace dots from trailing fold characters
+    eob = ' ',                -- removes annoying tilde at the bottom of short files
+    fold = '-',               -- replace dots with horizontal line to indicate folded sections
   },
 
-  foldlevelstart = 99,          -- new files open with everything unfolded
-  foldtext = '',                -- keep colors of folded lines
+  -- text search
+
+  ignorecase = true,          -- make search case-insensitive
+  smartcase = true,           -- but if our search contains uppercase(s), it becomes case-sensitive
 
   -- miscellaneous
 
-  backup = false,               -- do not creates a backup file
-  writebackup = false,          -- if a file is being edited in another program
-  swapfile = false,             -- do not creates a swapfile
-  undofile = true,              -- enable persistent undo
-  fileencoding = 'utf-8',       -- the encoding written to a file
-  autowrite = false,
-  updatetime = 100,
-
-  -- Miscellaneous
-  hidden = true,
-  history = 10000,
+  backup = false,             -- do not create a backup file
+  swapfile = false,           -- do not create a swap file
+  fileencoding = 'utf-8',     -- the encoding written to a file
 
 }
-
-
--- set all option parameters to their respective values
 
 for parameter, value in pairs(options) do
   vim.opt[parameter] = value

@@ -1,5 +1,5 @@
 ---
--- @file lua/external_plugins/bbye.lua
+-- @file lua/plugins/bbye.lua
 --
 -- @brief
 -- The configuration file for the plugin bbye
@@ -16,7 +16,7 @@ return {
   event = {'BufReadPost', 'BufNewFile'},
 
   config = function()
-    vim.keymap.set('n', '<leader>c', ':Bdelete!<CR>', { noremap = true, silent = true } )
+    vim.keymap.set('n', '<leader>c', ':Bdelete!<CR>')
   end
 
 }

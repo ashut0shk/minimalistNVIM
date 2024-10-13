@@ -1,5 +1,5 @@
 ---
--- @file lua/internal_plugins/statusline.lua
+-- @file lua/statusline.lua
 --
 -- @brief
 -- The configuration file to set a custom statusline
@@ -66,7 +66,7 @@ local function current_mode()
     [''] = 'v',
   }
 
-  mode = mode_aliases[mode]:upper() or '?'
+  mode = mode and mode_aliases[mode] and mode_aliases[mode]:upper() or '?'
 
   return '%#statusline_mode# ' .. mode .. ' '
 
@@ -110,7 +110,7 @@ end
 
 -- a function to call and place the statusline components
 
-function status_line()
+function Status_line()
 
   return table.concat({
 
@@ -127,16 +127,17 @@ function status_line()
 end
 
 
--- only display one statusline
+-- only display one statusline and only display cursorline in the active window
 
-vim.o.laststatus = 3
+vim.opt['laststatus'] = 3
 
 vim.cmd([[
   augroup Statusline
     au!
-    au WinEnter,BufEnter * setlocal statusline=%!v:lua.status_line()
-    au WinLeave,BufLeave * setlocal statusline=%!v:lua.status_line()
-    au WinLeave,BufLeave,FileType NvimTree setlocal statusline=%!v:lua.status_line()
+    au WinEnter,BufEnter * setlocal statusline=%!v:lua.Status_line()
+    au WinLeave,BufLeave * setlocal statusline=%!v:lua.Status_line()
+    au WinEnter,BufEnter * setlocal cursorline
+    au WinLeave,BufLeave * setlocal nocursorline
 ]])
 
 

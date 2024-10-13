@@ -1,5 +1,5 @@
 ---
--- @file lua/external_plugins/nvim-tree.lua
+-- @file lua/plugins/nvim-tree.lua
 --
 -- @brief
 -- The configuration file for the plugin nvim-tree
@@ -126,6 +126,8 @@ return {
     --     end
     --   end
     -- })
+
+    vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = '#777777'})
 
   end,
 }

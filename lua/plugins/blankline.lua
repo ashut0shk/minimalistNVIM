@@ -1,5 +1,5 @@
 ---
--- @file lua/external_plugins/blankline.lua
+-- @file lua/plugins/blankline.lua
 --
 -- @brief
 -- The configuration file for the plugin blankline
@@ -25,9 +25,7 @@ return {
 
     blankline.setup {
       indent = {char = '│'},
-      exclude = {
-        filetypes = { 'norg', 'tex' },
-      },
+      exclude = {},
     }
 
   end,

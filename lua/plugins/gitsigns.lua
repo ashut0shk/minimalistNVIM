@@ -1,6 +1,5 @@
 ---
--- @file lua/external_plugins/gitsigns.lua
---
+-- @file lua/plugins/gitsigns.lua
 -- @brief
 -- The configuration file for the plugin gitsigns
 --
@@ -14,7 +13,7 @@ return {
   'lewis6991/gitsigns.nvim',
 
   config = function()
-    
+
     local success, gitsigns = pcall(require, 'gitsigns')
     if not success then
       vim.notify('Error loading plugin: gitsigns')
@@ -58,14 +57,25 @@ return {
       },
     }
 
-    vim.keymap.set('n', '<leader>k', ':Gitsigns preview_hunk<CR>', {noremap = true, silent = true})
-    vim.keymap.set('n', '<leader>u', ':Gitsigns reset_hunk<CR>', {noremap = true, silent = true})
-    vim.keymap.set('n', '<leader>x', ':vert Gitsigns diffthis<CR>', {noremap = true, silent = true})
-    vim.keymap.set('n', '<leader>z', ':wincmd p | q<CR>', {noremap = true, silent = true})
+    vim.keymap.set('n', '<leader>k', ':Gitsigns preview_hunk<CR>')
+    vim.keymap.set('n', '<leader>u', ':Gitsigns reset_hunk<CR>')
+    vim.keymap.set('n', '<leader>x', ':vert Gitsigns diffthis<CR>')
+    vim.keymap.set('n', '<leader>z', ':wincmd p | q<CR>')
 
-    vim.keymap.set('n', '<C-g>', '<Cmd>Gitsigns stage_hunk<CR>', {noremap = true, silent = true})
-    vim.keymap.set('n', '<C-b>', '<Cmd>Gitsigns stage_buffer<CR>', {noremap = true, silent = true})
-    vim.keymap.set('n', '<C-i>', '<Cmd>Gitsigns blame_line<CR>', {noremap = true, silent = true})
+    vim.keymap.set('n', '<C-g>', '<Cmd>Gitsigns stage_hunk<CR>')
+    vim.keymap.set('n', '<C-f>', '<Cmd>Gitsigns stage_buffer<CR>')
+    vim.keymap.set('n', '<C-i>', '<Cmd>Gitsigns blame_line<CR>')
+
+    vim.api.nvim_set_hl(0, 'DiffAdd', { fg = '#dddddd' })
+    vim.api.nvim_set_hl(0, 'DiffDelete', { fg = '#999999' })
+    vim.api.nvim_set_hl(0, 'DiffText', { fg = '#000000', bg = '#bbbbbb' })
+    vim.api.nvim_set_hl(0, 'Changed', { fg = '#eeeeee' })
+
+    vim.api.nvim_set_hl(0, 'GitSignsAddInline', { fg = '#eeeeee', bg = '#444444' })
+    vim.api.nvim_set_hl(0, 'GitSignsDeleteInline', { fg = '#aaaaaa', bg = '#333333' })
+    vim.api.nvim_set_hl(0, 'GitSignsStagedAdd', { fg = '#aaaaaa' })
+    vim.api.nvim_set_hl(0, 'GitSignsStagedChange', { fg = '#aaaaaa' })
+    vim.api.nvim_set_hl(0, 'GitSignsStagedChangeDelete', { fg = '#aaaaaa' })
 
   end
 

@@ -11,11 +11,9 @@
 
 return {
 
-  -- github repository for nvim-cmp
   'hrsh7th/nvim-cmp',
 
-  -- load for these files
-  ft = { 'python', 'rust', 'lua', 'typescript', 'javascript' },
+  ft = { 'lua', 'python' },
 
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
@@ -32,14 +30,13 @@ return {
     end
 
     local snippets
-    success, snippets = pcall(require, 'internal_plugins/snippets')
+    success, snippets = pcall(require, 'snippets')
     if not success then
-      vim.notify('Failed to load plugin: snippets')
+      vim.notify('Failed to load the snippets')
       return
     end
     snippets.register_cmp_source()
 
-    -- just don't use icons
     local kind_icons = {
       Text = '',
       Method = '<method>',
@@ -83,62 +80,49 @@ return {
 
       window = {
 
-        completion = cmp.config.window.bordered(
-          {
-            border = 'rounded',
-            scrollbar = false,
-          }
-        ),
+        completion = cmp.config.window.bordered({
+          border = 'single',
+          max_width = 80,
+          max_height = 12,
+          scrollbar = false,
+        }),
 
-        documentation = cmp.config.window.bordered(
-          {
-            border = 'rounded'
-          }
-        ),
+        documentation = cmp.config.window.bordered({
+          border = 'single',
+          max_width = 80,
+          max_height = 12,
+        }),
 
       },
 
-      completion = { completeopt = 'menu,menuone,noselect,noinsert' },
+      completion = { completeopt = 'menu,menuone,noinsert' },
 
       mapping = {
 
         -- press return to confirm completion
         ['<CR>'] = cmp.mapping.confirm{ select = true },
 
-        -- press tab to jump to the next snippet variable
+        -- jump to the next snippet field
         ['<Tab>'] = cmp.mapping(
           function(fallback)
             if vim.snippet.active({ direction = 1 }) then
               vim.snippet.jump(1)
-            elseif cmp.visible() then
-              cmp.select_next_item()
             else
               fallback()
             end
           end, { 'i', 's' }
         ),
 
-        -- press shift + tab to jump to the previous snippet variable
+        -- jump to the prev snippet field
         ['<S-Tab>'] = cmp.mapping(
           function(fallback)
             if vim.snippet.active({ direction = -1 }) then
               vim.snippet.jump(-1)
-            elseif cmp.visible() then
-              cmp.select_prev_item()
             else
               fallback()
             end
           end, { 'i', 's' }
         ),
-
-        -- Navigate suggestions with arrow keys or hjkl
-        ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-        ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-        ['<Right>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        ['<Left>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-
 
         -- vim-motion-esque navigation in cmp items
         ['<C-S-j>'] = cmp.mapping(
@@ -180,19 +164,16 @@ return {
       formatting = {
 
         fields = { 'kind', 'abbr', 'menu' },
-
         format = function(entry, vim_item)
 
           vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
 
-          vim_item.menu = (
-            {
-              snippets = 'snippets',
-              nvim_lsp = 'lsp',
-              buffer = 'buff',
-              path = 'path',
-            }
-          )[entry.source.name]
+          vim_item.menu = ({
+            snippets = 'snippets',
+            nvim_lsp = 'lsp',
+            buffer = 'buff',
+            path = 'path',
+          })[entry.source.name]
 
           return vim_item
 

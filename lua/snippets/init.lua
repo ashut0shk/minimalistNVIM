@@ -1,5 +1,5 @@
 ---
--- @file lua/internal_plugins/snippets/init.lua
+-- @file lua/snippets/init.lua
 --
 -- @brief
 -- The configuration file for the snippet functionalities
@@ -15,10 +15,8 @@ local global_snippets = {}
 
 local snippets_by_filetype = {
 
-  lua = require('internal_plugins/snippets/lua'),
-  python = require('internal_plugins/snippets/python'),
-  typescript = require('internal_plugins/snippets/typescript'),
-  javascript = require('internal_plugins/snippets/javascript'),
+  lua = require('snippets/lua'),
+  python = require('snippets/python'),
 
 }
 

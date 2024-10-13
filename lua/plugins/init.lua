@@ -1,5 +1,5 @@
 ---
--- @file lua/external_plugins/init.lua
+-- @file lua/plugins/init.lua
 -- The initialization file to load external plugins
 --
 -- @author Rezha Adrian Tanuharja
@@ -42,7 +42,7 @@ if not success then
 end
 
 -- all plugin settings are in this directory
-local location = 'external_plugins.'
+local location = 'plugins.'
 
 -- specify manually the plugins to load
 lazy.setup {
@@ -76,19 +76,14 @@ lazy.setup {
   },
 
   spec = {
-    { import = location .. 'telescope' },
-    { import = location .. 'nvim-tree' },
     { import = location .. 'cmp' },
-    { import = location .. 'lsp' },
-    { import = location .. 'treesitter' },
-    { import = location .. 'bbye' },
-    { import = location .. 'blankline' },
+    { import = location .. 'telescope' },
     { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },
+    { import = location .. 'bbye' },
+    { import = location .. 'blankline' },
+    { import = location .. 'treesitter' },
+    { import = location .. 'nvim-tree' },
     { import = location .. 'todo-comments' },
-    { import = location .. 'oil' },
-    -- { import = location .. 'bufferline' },
-    { import = location .. 'copilot' },
-    { import = location .. 'minimap' },
   },
 }

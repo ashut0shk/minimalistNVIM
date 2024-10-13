@@ -1,5 +1,5 @@
 ---
--- @file lua/external_plugins/treesitter.lua
+-- @file lua/plugins/treesitter.lua
 --
 -- @brief
 -- The configuration file for the plugin treesitter
@@ -27,20 +27,21 @@ return {
     end
 
     treesitter.setup {
-      ensure_installed = { 'python', 'javascript', 'lua', 'html', 'css', 'bicep', 'yaml' },
-      sync_install = false,
+      ensure_installed = { 'lua', 'python' },
+      sync_install = true,
       ignore_install = {},
       highlight = {
         enable = true,
-        disable = { 'markdown' },
+        disable = function(_, bufnr)
+          return vim.api.nvim_buf_line_count(bufnr) > 500
+        end,
       },
-      indent = { enable = true, disable = { 'css', 'latex' }},
+      indent = { enable = true },
       fold = { enable = true },
     }
 
-    vim.o.foldmethod = 'expr'
-    vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-    vim.o.foldlevel = 99 -- Start unfolded
+    vim.opt['foldmethod'] = 'expr'
+    vim.opt['foldexpr'] = 'nvim_treesitter#foldexpr()'
 
   end,
 

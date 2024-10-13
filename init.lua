@@ -2,27 +2,29 @@
 -- @file init.lua
 --
 -- @brief
--- The initialization file to select user and call other configuration files
+-- The starting point of the Neovim config
 --
 -- @author Rezha Adrian Tanuharja
--- @date 2024-08-13
+-- @date 2024-10-12
 --
 
 
 local config_files = {
-  'globals',
   'options',
   'keymaps',
-  'commands',
-  'external_plugins',
-  'internal_plugins',
+  'colors',
+  'languageservers',
+  'diagnostics',
+  'statusline',
+  'plugins',
+  'snippets',
 }
 
-for _, config_file in pairs(config_files) do
+for _, file in pairs(config_files) do
 
-  local success, _ = pcall(require, config_file)
+  local success, _ = pcall(require, file)
   if not success then
-    vim.notify('Failed to load config file ' .. config_file)
+    vim.notify('Failed to load a config file ' .. file)
     break
   end
 

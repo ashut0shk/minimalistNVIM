@@ -1,5 +1,5 @@
 ---
--- @file lua/external_plugins/telescope.lua
+-- @file lua/plugins/telescope.lua
 --
 -- @brief
 -- The configuration file for the plugin telescope

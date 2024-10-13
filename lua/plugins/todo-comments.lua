@@ -1,5 +1,5 @@
 ---
--- @file lua/external_plugins/todo-comments.lua
+-- @file lua/plugins/todo-comments.lua
 --
 -- @brief
 -- The configuration file for the plugin todo-comments
