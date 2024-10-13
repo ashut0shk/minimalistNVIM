@@ -103,7 +103,7 @@ return {
       -- adjust the window size
       view = {
         width = 32,
-        side = 'left',
+        side = 'right',
       },
 
       -- do not show hidden files
@@ -116,16 +116,6 @@ return {
     -- keymap to open the project tree
     vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
     vim.keymap.set('n', '<leader>`', ':NvimTreeFocus<CR>')
-    -- vim.keymap.set('n', '<leader>1', '<C-w>w')
-
-    -- open nvimtree
-    -- vim.api.nvim_create_autocmd("BufEnter", {
-    --   callback = function()
-    --     if vim.fn.isdirectory(vim.fn.expand('%:p:h')) == 1 then
-    --       vim.cmd("NvimTreeOpen")
-    --     end
-    --   end
-    -- })
 
     vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = '#777777'})
 

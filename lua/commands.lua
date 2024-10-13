@@ -1,0 +1,152 @@
+---  
+-- @file lua/commands.lua  
+--  
+-- @brief  
+-- The configuration file to set custom nvim command  
+--  
+-- @author Rezha Adrian Tanuharja  
+-- @date 2024-10-12
+--  
+
+
+-- autocommand group intended for visual aids  
+vim.api.nvim_create_augroup('visual_aid', { clear = true })  
+
+
+-- highlight yanked text  
+vim.api.nvim_create_autocmd(  
+  'TextYankPost', {  
+    group = visual_aid,  
+    callback = function()  
+      vim.highlight.on_yank()  
+    end,  
+  }  
+)  
+
+
+-- activate cursorline when entering a window  
+vim.api.nvim_create_autocmd(  
+  {'BufEnter', 'WinEnter'}, {  
+    group = visual_aid,  
+    callback = function()  
+      vim.cmd('setlocal cursorline')  
+    end,  
+  }  
+)  
+
+-- deactivate cursorline when leaving a window  
+vim.api.nvim_create_autocmd(  
+  {'BufLeave', 'WinLeave'}, {  
+    group = visual_aid,  
+    callback = function()  
+      vim.cmd('setlocal nocursorline')  
+    end,  
+  }  
+)  
+
+
+-- when in visual mode, type this command to replace words  
+vim.api.nvim_create_user_command(  
+  'ExactReplace',  
+  function(opts)  
+    local start_line = vim.fn.line("'<")  
+    local end_line = vim.fn.line("'>")  
+    local word = opts.args  
+    vim.fn.cursor(start_line, 1)  
+    vim.cmd('normal! V')  
+    vim.fn.cursor(end_line, 1)  
+    vim.api.nvim_feedkeys(":s/\\<" .. word .. "\\>/", 'c', false)  
+  end,  
+  { nargs = 1, range = true }  
+)  
+
+-- when in visual mode, type this command to perform multiple inputs after certain word  
+vim.api.nvim_create_user_command(  
+  'AppendTo',  
+  function(opts)  
+    local start_line = vim.fn.line("'<")  
+    local end_line = vim.fn.line("'>")  
+    local word = opts.args  
+    vim.fn.cursor(start_line, 1)  
+    vim.cmd('normal! V')  
+    vim.fn.cursor(end_line, 1)  
+    vim.api.nvim_feedkeys(":s/\\(" .. word .. "\\)/\\1", 'c', false)  
+  end,  
+  { nargs = 1, range = true }  
+)  
+
+-- activate tree and minimap  
+-- vim.api.nvim_create_autocmd(
+--   {"BufNewFile", "BufReadPost"}, {
+--     group = visual_aid,
+--     callback = function()
+--       -- if vim.fn.isdirectory(vim.fn.expand('%:p:h')) == 1 then
+--       --   -- Use pcall to safely call the command
+--       --   local success = pcall(vim.cmd, 'NvimTreeToggle')
+--       --   if not success then
+--       --     vim.notify('Failed to toggle NvimTree: command not available')
+--       --   end
+
+--       -- end
+--       if vim.fn.expand "%:p" ~= "" then
+--         vim.api.nvim_del_autocmd(args.id)
+--         vim.cmd "noautocmd NvimTreeOpen"
+--         vim.cmd "noautocmd wincmd p"
+--       end
+--     end,
+--   }
+-- )
+
+-- activate tree and minimap  
+-- vim.api.nvim_create_autocmd(
+--   {'BufEnter'}, {
+--     group = visual_aid,
+--     callback = function()
+--       if vim.fn.isdirectory(vim.fn.expand('%:p:h')) == 1 then
+--         -- toggle Minimap safely
+--         -- local minimap_success = pcall(vim.cmd, 'MinimapToggle')
+--         if not minimap_success then
+--           vim.notify('Failed to toggle Minimap: command not available')
+--         end
+
+--       end
+--     end,
+--   }
+-- )
+
+-- local function open_nvim_tree(data)
+--   -- buffer is a directory
+--   local directory = vim.fn.isdirectory(data.file) == 1
+
+--   if not directory then
+--     return
+--   end
+
+--   -- change to the directory
+--   vim.cmd.cd(data.file)
+
+--   -- open the tree
+--   require("nvim-tree.api").tree.open()
+-- end
+
+-- vim.api.nvim_create_autocmd({ "BufReadPost" }, { callback = open_nvim_tree })
+
+-- Auto-open Nvim Tree when starting Neovim with a file argument or in an empty buffer
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+  callback = function(data)
+    -- Load the plugin manually if it's lazy-loaded
+    require('lazy').load({ plugins = { 'nvim-tree.lua' } })
+
+    -- Check if Nvim Tree is already open to avoid opening it twice
+    local isNvimTreeOpen = require("nvim-tree.view").is_visible()
+    if isNvimTreeOpen then return end
+
+    -- Only open Nvim Tree if the buffer is a directory or there are arguments
+    if vim.fn.isdirectory(data.file) == 1 then
+      vim.cmd.cd(data.file)
+      require("nvim-tree.api").tree.open()
+    elseif vim.fn.argc() > 0 then
+      require("nvim-tree.api").tree.open()
+    end
+  end,
+})

@@ -16,6 +16,10 @@ local options = {
   mouse = '',                 -- disable mouse in neovim
   clipboard = 'unnamedplus',  -- neovim uses the system clipboard by default
   cursorline = true,
+  guifont = 'monospace:h16',    -- the font used in graphical neovim application
+  termguicolors = true,         -- use the proper color
+  cmdheight = 1,                -- only need to display one line for commands
+  pumheight = 10,
   showtabline = 0,            -- hide tabline
   inccommand = 'split',       -- when performing substitution, show preview at the bottom
   timeoutlen = 300,           -- time for user to finish a key combination
@@ -24,6 +28,13 @@ local options = {
   splitbelow = true,          -- when splitting horizontally, new window goes below
   splitright = true,          -- when splitting vertically, new window goes to the right
   showmode = false,           -- mode will be shown by statusline
+
+
+  -- Highlighting and Spacing
+  smoothscroll = true,
+  list = false,
+  listchars = "trail:•,eol:↲,space:·,tab:> ,extends:.,precedes:.,nbsp:⎵",
+  pumblend = 10,
 
   -- tabs and indentations
 
@@ -36,6 +47,7 @@ local options = {
   relativenumber = true,      -- display relative line numbers
   number = true,              -- display the current line number
   numberwidth = 4,            -- the column width to display line numbers
+  signcolumn = 'yes',           -- add a column next to line number for signs
 
   -- text display
 
@@ -53,7 +65,7 @@ local options = {
   },
 
   -- text search
-
+  hlsearch = true,              -- highlight all words that match the search pattern
   ignorecase = true,          -- make search case-insensitive
   smartcase = true,           -- but if our search contains uppercase(s), it becomes case-sensitive
 
@@ -62,6 +74,11 @@ local options = {
   backup = false,             -- do not create a backup file
   swapfile = false,           -- do not create a swap file
   fileencoding = 'utf-8',     -- the encoding written to a file
+  writebackup = false,          -- if a file is being edited in another program
+  undofile = true,              -- enable persistent undo
+  autowrite = false,
+  hidden = true,
+  history = 10000,
 
 }
 

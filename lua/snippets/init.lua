@@ -15,8 +15,10 @@ local global_snippets = {}
 
 local snippets_by_filetype = {
 
+  javascript = require('snippets/javascript'),
   lua = require('snippets/lua'),
   python = require('snippets/python'),
+  typescript = require('snippets/typescript'),
 
 }
 

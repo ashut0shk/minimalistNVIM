@@ -76,14 +76,19 @@ lazy.setup {
   },
 
   spec = {
-    { import = location .. 'cmp' },
-    { import = location .. 'telescope' },
-    { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },
     { import = location .. 'bbye' },
     { import = location .. 'blankline' },
-    { import = location .. 'treesitter' },
+    -- { import = location .. 'bufferline' },
+    { import = location .. 'cmp' },
+    { import = location .. 'copilot' },
+    { import = location .. 'gitsigns' },
+    { import = location .. 'lsp' },
+    { import = location .. 'minimap' },
     { import = location .. 'nvim-tree' },
+    { import = location .. 'oil' },
+    { import = location .. 'telescope' },
     { import = location .. 'todo-comments' },
+    { import = location .. 'treesitter' },
   },
 }

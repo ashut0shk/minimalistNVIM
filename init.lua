@@ -8,14 +8,13 @@
 -- @date 2024-10-12
 --
 
-
+vim.g.python3_host_prog = 'C:/Users/askumar/.pyenv/pyenv-win/shims/python'
 local config_files = {
-  'options',
+  'commands',
+  'globals',
   'keymaps',
-  'colors',
-  'languageservers',
-  'diagnostics',
-  'statusline',
+  'local',
+  'options',
   'plugins',
   'snippets',
 }
