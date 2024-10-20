@@ -8,6 +8,10 @@
 -- @date 2024-10-12
 --
 
+-- Utility function to detect root directory
+local function get_root_dir(buf, patterns)
+  return vim.fs.dirname(vim.fs.find(patterns, { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(buf)) })[1])
+end
 
 -- show function signature after opening parentheses or comma
 
@@ -117,6 +121,35 @@ vim.api.nvim_create_autocmd(
               typeCheckingMode = 'basic',
               autoSeachPaths = true,
             }
+          },
+        },
+      })
+    end,
+  }
+)
+
+-- Attach TypeScript/JavaScript language server
+vim.api.nvim_create_autocmd(
+  'FileType', {
+    pattern = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+    callback = function(args)
+      vim.lsp.start({
+        name = 'tsserver',
+        cmd = { 'C:\\Program Files\\nodejs\\typescript-language-server.cmd', '--stdio' },
+        root_dir = get_root_dir(args.buf, { 'package.json', 'tsconfig.json', 'jsconfig.json', '.git' }),
+        settings = {
+          typescript = {
+            format = {
+              enable = true,
+            },
+          },
+          javascript = {
+            format = {
+              enable = true,
+            },
+          },
+          completions = {
+            completeFunctionCalls = true,
           },
         },
       })
