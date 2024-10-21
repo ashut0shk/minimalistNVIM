@@ -27,7 +27,7 @@ return {
     end
 
     treesitter.setup {
-      ensure_installed = { 'python', 'javascript', 'lua', 'html', 'css', 'bicep', 'yaml' },
+      ensure_installed = { 'python', 'typescript', 'javascript', 'lua', 'html', 'css', 'bicep', 'yaml' },
       sync_install = false,
       ignore_install = {},
       incremental_selection = { enable = true },
