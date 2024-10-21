@@ -9,8 +9,7 @@
 --
 
 
-vim.keymap.set('', '<space>', '<nop>', { desc = 'space is only a leader key now' })
-
+vim.keymap.set('', '<space>', '<nop>', { noremap = true, silent = true, desc = 'space is only a leader key now' } )
 local mode_keymaps = {
 
   normal = {
@@ -92,17 +91,29 @@ local mode_keymaps = {
 
     ['gb'] = { action = '<C-t>', desc = 'go back after jump, e.g., goto definition' },
     ['<C-r>'] = { action = '<cmd>Telescope treesitter<return>', desc = 'treesitter lookup' },
+    ['<leader>1'] = { action = '<C-w>w', desc = 'switch panes' },
+    ['<leader>`'] = { action = '<cmd>NvimTreeFocus<return>', desc = 'focus sidebar' },
+
+
   },
 
   visual = {
 
     ['H'] = { action = '<gv', desc = 'move highlighted part to the left' },
-    ['J'] = { action = ":move '>+1<cr>gvgv", desc = 'move highlighted part down' },
-    ['K'] = { action = ":move '<-2<cr>gvgv", desc = 'move highlighted part up' },
     ['L'] = { action = '>gv', desc = 'move highlighted part to the right' },
 
     ['<leader>i'] = { action = ':s/^/', desc = 'spawn multiple cursors at the start of highlighted lines' },
     ['<leader>a'] = { action = ':s/$/', desc = 'spawn multiple cursors at the end of highlighted lines' },
+
+    ['<leader>s'] = {
+      action = "<cmd>lua vim.api.nvim_feedkeys(':ExactReplace ', 'c', false)<return>",
+      desc = 'search and replace exact words in highlighted text'
+    },
+
+    ['<leader>p'] = {
+      action = "<cmd>lua vim.api.nvim_feedkeys(':AppendTo ', 'c', false)<return>",
+      desc = 'search and add text following the search results'
+    },
 
   },
 

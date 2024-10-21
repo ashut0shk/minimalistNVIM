@@ -26,6 +26,13 @@ local options = {
   showmode = false,           -- mode will be shown by statusline
   cmdheight = 0,              -- only need the commandline when typing command
 
+
+  -- Highlighting and Spacing
+  smoothscroll = true,
+  list = false,
+  listchars = 'trail:•,eol:↲,space:·,tab:> ,extends:.,precedes:.,nbsp:⎵',
+  pumblend = 10,
+
   -- tabs and indentations
 
   expandtab = true,           -- convert tabs into spaces
@@ -34,7 +41,7 @@ local options = {
 
   -- number columns
 
-  relativenumber = false,     -- display relative line numbers
+  relativenumber = true,      -- display relative line numbers
   number = true,              -- display the current line number
   numberwidth = 3,            -- the column width to display line numbers
 
@@ -55,7 +62,6 @@ local options = {
   },
 
   -- text search
-
   ignorecase = true,          -- make search case-insensitive
   smartcase = true,           -- but if our search contains uppercase(s), it becomes case-sensitive
 
@@ -64,6 +70,11 @@ local options = {
   backup = false,             -- do not create a backup file
   swapfile = false,           -- do not create a swap file
   fileencoding = 'utf-8',     -- the encoding written to a file
+  writebackup = false,          -- if a file is being edited in another program
+  undofile = true,              -- enable persistent undo
+  autowrite = false,
+  hidden = true,
+  history = 10000,
 
 }
 
