@@ -13,7 +13,7 @@ return {
 
   'hrsh7th/nvim-cmp',
 
-  ft = { 'lua', 'python' },
+  ft = { 'python', 'lua', 'typescript', 'javascript'},
 
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',

@@ -9,9 +9,6 @@
 --
 
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 vim.keymap.set('', '<space>', '<nop>', { desc = 'space is only a leader key now' })
 
 local mode_keymaps = {
@@ -80,6 +77,21 @@ local mode_keymaps = {
       desc = 'navigate to the prev quickfix list'
     },
 
+    ['<leader><PageUp>'] = { action = '<cmd>bprev<return>', desc = 'Next file in buffer' },
+    ['<leader><PageDown>'] = { action = '<cmd>bnext<return>', desc = 'Previous file in buffer' },
+
+    ['<C-p>'] = { action = '<cmd>Telescope find_files<return>', desc = 'Find files' },
+    ['<leader>1'] = { action = '<C-w>w', desc = 'Switch between panels' },
+    ['<leader>`'] = { action = '<cmd>NvimTreeFocus<return>', desc = 'Switch between panels' },
+
+    ['<leader>t'] = { action = '<cmd>terminal<return>', desc = 'open a terminal in the current window' },
+    ['<leader>j'] = { action = '<cmd>botright new | resize 12 | terminal<return>', desc = 'open a terminal in VS Code style' },
+
+    ['<leader>a'] = { action = 'za', desc = 'fold the scope under cursor' },
+    ['<leader>r'] = { action = 'zR', desc = 'expand all folds in the current buffer' },
+
+    ['gb'] = { action = '<C-t>', desc = 'go back after jump, e.g., goto definition' },
+    ['<C-r>'] = { action = '<cmd>Telescope treesitter<return>', desc = 'treesitter lookup' },
   },
 
   visual = {
@@ -98,6 +110,18 @@ local mode_keymaps = {
 
     ['<C-y>'] = { action = '/g | nohlsearch<return>', desc = 'confirm substitutions' },
 
+  },
+
+  terminal = {
+
+    ['qq'] = { action = '<C-\\><C-n>', desc = 'exit terminal mode without closing the terminal' },
+
+  },
+
+  insert = {
+
+    ['<C-s>'] = { action = '<Esc>:w<CR>a', desc = 'Save file' },
+    ['<C-v>'] = { action = '<C-o>:set paste<CR><C-r>+<C-o>:set nopaste<CR>', desc = 'Paste here' },
   },
 
 }

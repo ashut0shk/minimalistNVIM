@@ -103,7 +103,7 @@ return {
       -- adjust the window size
       view = {
         width = 32,
-        side = 'left',
+        side = 'right',
       },
 
       -- do not show hidden files

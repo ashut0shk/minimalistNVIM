@@ -77,6 +77,7 @@ lazy.setup {
 
   spec = {
     { import = location .. 'cmp' },
+    { import = location .. 'copilot' },
     { import = location .. 'telescope' },
     { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },

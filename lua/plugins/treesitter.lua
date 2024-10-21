@@ -27,13 +27,15 @@ return {
     end
 
     treesitter.setup {
-      ensure_installed = { 'lua', 'python' },
+      ensure_installed = { "typescript", "javascript", "lua", "python" },
       sync_install = true,
       ignore_install = {},
+      incremental_selection = { enable = true },
+      textobjects = { enable = true },
       highlight = {
         enable = true,
         disable = function(_, bufnr)
-          return vim.api.nvim_buf_line_count(bufnr) > 500
+          return vim.api.nvim_buf_line_count(bufnr) > 1500
         end,
       },
       indent = { enable = true },

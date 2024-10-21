@@ -10,14 +10,12 @@
 
 
 local config_files = {
-  'options',
-  'keymaps',
-  'colors',
-  'languageservers',
-  'diagnostics',
-  'statusline',
+  'local',
   'plugins',
   'snippets',
+  'globals',
+  'keymaps',
+  'options',
 }
 
 for _, file in pairs(config_files) do
